@@ -1,0 +1,32 @@
+{
+  "name": "eoneopay/currency",
+  "description": "ISO 4217 compatible library for handling currencies",
+  "keywords": [
+    "eoneopay",
+    "currency"
+  ],
+  "license": "MIT",
+  "type": "library",
+  "require": {
+    "php": ">=7.1",
+    "roave/security-advisories": "dev-master"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~6.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "EoneoPay\\Currency\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\EoneoPay\\Currency\\": "tests/"
+    }
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true,
+  "config": {
+    "optimize-autoloader": true
+  }
+}
