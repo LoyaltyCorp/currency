@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\EoneoPay\Payments;
+namespace Tests\EoneoPay\Currency;
 
 use EoneoPay\Currency\Formatter;
 use PHPUnit\Framework\TestCase;
