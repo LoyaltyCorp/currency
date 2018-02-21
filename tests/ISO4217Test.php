@@ -14,6 +14,11 @@ use PHPUnit\Framework\TestCase;
 class ISO4217Test extends TestCase
 {
     /**
+     * @var array
+     */
+    private static $alphaCodes = ['AUD', 'EUR', 'JPY', 'NZD', 'USD', 'XBT'];
+
+    /**
      * Find currency by alpha or numeric code
      *
      * @return void
@@ -43,5 +48,10 @@ class ISO4217Test extends TestCase
         $this->expectException(InvalidCurrencyCodeException::class);
 
         (new ISO4217())->find('INVALID');
+    }
+
+    public function testGetSupportedAlphaCodes(): void
+    {
+        self::assertSame(static::$alphaCodes, (new ISO4217())->getSupportedAlphaCodes());
     }
 }

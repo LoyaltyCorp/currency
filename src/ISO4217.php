@@ -26,6 +26,22 @@ class ISO4217 implements ISO4217Interface
     }
 
     /**
+     * Return all supported currencies alpha codes.
+     *
+     * @return array
+     */
+    public function getSupportedAlphaCodes(): array
+    {
+        $alphaCodes = [];
+
+        $this->iterateOverCurrencies(function (CurrencyInterface $currency) use (&$alphaCodes) {
+            $alphaCodes[] = $currency->getAlphaCode();
+        });
+
+        return $alphaCodes;
+    }
+
+    /**
      * Get a list of all currencies available in the system
      *
      * @param string $code The alpha or numeric code to find the currency for
@@ -37,10 +53,33 @@ class ISO4217 implements ISO4217Interface
      */
     private function findCurrency(string $code, string $method): CurrencyInterface
     {
-        $classes = new GlobIterator(\sprintf('%s/*.php', \sprintf('%s/%s', __DIR__, 'Currencies')));
+        $currency = $this->iterateOverCurrencies(function (CurrencyInterface $currency) use ($code, $method) {
+            // Check currency against code
+            if (\mb_strtolower($currency->{$method}()) === \mb_strtolower($code)) {
+                return $currency;
+            }
 
-        // Convert code to lower case
-        $code = \mb_strtolower($code);
+            return null;
+        });
+
+        if (null !== $currency) {
+            return $currency;
+        }
+
+        // Currency isn't found, throw exception
+        throw new InvalidCurrencyCodeException(\sprintf('Currency code can not be found: %s', \mb_strtoupper($code)));
+    }
+
+    /**
+     * Iterate over currencies and pass them to closure.
+     *
+     * @param \Closure $closure
+     *
+     * @return mixed|null
+     */
+    private function iterateOverCurrencies(\Closure $closure)
+    {
+        $classes = new GlobIterator(\sprintf('%s/*.php', \sprintf('%s/%s', __DIR__, 'Currencies')));
 
         /** @var \SplFileInfo $class */
         foreach ($classes as $class) {
@@ -59,13 +98,14 @@ class ISO4217 implements ISO4217Interface
                 // @codeCoverageIgnoreEnd
             }
 
-            // Check currency against code
-            if (\mb_strtolower($currency->{$method}()) === $code) {
-                return $currency;
+            $return = $closure($currency);
+
+            // Keep looping until closure return something else than null
+            if (null !== $return) {
+                return $return;
             }
         }
 
-        // Currency isn't found, throw exception
-        throw new InvalidCurrencyCodeException(\sprintf('Currency code can not be found: %s', \mb_strtoupper($code)));
+        return null;
     }
 }
