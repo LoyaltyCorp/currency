@@ -5,7 +5,7 @@ namespace EoneoPay\Currency\Currencies;
 
 use EoneoPay\Currency\Currency;
 
-class NZD extends Currency
+class Jpy extends Currency
 {
     /**
      * Get the currency symbol for this currency
@@ -14,7 +14,7 @@ class NZD extends Currency
      */
     public function getCurrencySymbol(): string
     {
-        return "\u{24}";
+        return "\u{a5}";
     }
 
     /**
@@ -24,7 +24,7 @@ class NZD extends Currency
      */
     public function getMinorUnit(): int
     {
-        return 2;
+        return 0;
     }
 
     /**
@@ -34,7 +34,7 @@ class NZD extends Currency
      */
     public function getName(): string
     {
-        return 'New Zealand Dollar';
+        return 'Japanese Yen';
     }
 
     /**
@@ -44,6 +44,6 @@ class NZD extends Currency
      */
     public function getNumericCode(): string
     {
-        return '554';
+        return '392';
     }
 }

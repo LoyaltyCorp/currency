@@ -6,9 +6,8 @@ namespace EoneoPay\Currency;
 use EoneoPay\Currency\Exceptions\InvalidCurrencyCodeException;
 use EoneoPay\Currency\Interfaces\CurrencyInterface;
 use EoneoPay\Currency\Interfaces\ISO4217Interface;
-use GlobIterator;
 
-class ISO4217 implements ISO4217Interface
+class ISO4217 extends Iterator implements ISO4217Interface
 {
     /**
      * Find a currency by alpha or numeric code
@@ -34,9 +33,9 @@ class ISO4217 implements ISO4217Interface
     {
         $alphaCodes = [];
 
-        $this->iterateOverCurrencies(function (CurrencyInterface $currency) use (&$alphaCodes) {
+        $this->iterateDirectory(function (CurrencyInterface $currency) use (&$alphaCodes) {
             $alphaCodes[] = $currency->getAlphaCode();
-        });
+        }, 'Currencies', CurrencyInterface::class);
 
         return $alphaCodes;
     }
@@ -53,14 +52,14 @@ class ISO4217 implements ISO4217Interface
      */
     private function findCurrency(string $code, string $method): CurrencyInterface
     {
-        $currency = $this->iterateOverCurrencies(function (CurrencyInterface $currency) use ($code, $method) {
+        $currency = $this->iterateDirectory(function (CurrencyInterface $currency) use ($code, $method) {
             // Check currency against code
             if (\mb_strtolower($currency->{$method}()) === \mb_strtolower($code)) {
                 return $currency;
             }
 
             return null;
-        });
+        }, 'Currencies', CurrencyInterface::class);
 
         if (null !== $currency) {
             return $currency;
@@ -68,44 +67,5 @@ class ISO4217 implements ISO4217Interface
 
         // Currency isn't found, throw exception
         throw new InvalidCurrencyCodeException(\sprintf('Currency code can not be found: %s', \mb_strtoupper($code)));
-    }
-
-    /**
-     * Iterate over currencies and pass them to closure.
-     *
-     * @param \Closure $closure
-     *
-     * @return mixed|null
-     */
-    private function iterateOverCurrencies(\Closure $closure)
-    {
-        $classes = new GlobIterator(\sprintf('%s/*.php', \sprintf('%s/%s', __DIR__, 'Currencies')));
-
-        /** @var \SplFileInfo $class */
-        foreach ($classes as $class) {
-            // Get basename for class
-            $basename = $class->getBasename('.php');
-
-            // Instantiate class
-            $className = \sprintf('%s\\Currencies\\%s', __NAMESPACE__, $basename);
-            $currency = new $className;
-
-            // Make sure class implements currency interface
-            if (!$currency instanceof CurrencyInterface) {
-                // @codeCoverageIgnoreStart
-                // This is only here as a fail-safe if a non-currency php file is added to the Currencies directory
-                continue;
-                // @codeCoverageIgnoreEnd
-            }
-
-            $return = $closure($currency);
-
-            // Keep looping until closure return something else than null
-            if (null !== $return) {
-                return $return;
-            }
-        }
-
-        return null;
     }
 }

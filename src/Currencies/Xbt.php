@@ -5,7 +5,7 @@ namespace EoneoPay\Currency\Currencies;
 
 use EoneoPay\Currency\Currency;
 
-class USD extends Currency
+class Xbt extends Currency
 {
     /**
      * Get the currency symbol for this currency
@@ -14,7 +14,7 @@ class USD extends Currency
      */
     public function getCurrencySymbol(): string
     {
-        return "\u{24}";
+        return "\u{e3f}";
     }
 
     /**
@@ -24,7 +24,7 @@ class USD extends Currency
      */
     public function getMinorUnit(): int
     {
-        return 2;
+        return 8;
     }
 
     /**
@@ -34,7 +34,7 @@ class USD extends Currency
      */
     public function getName(): string
     {
-        return 'United States Dollar';
+        return 'Bitcoin';
     }
 
     /**
@@ -44,6 +44,6 @@ class USD extends Currency
      */
     public function getNumericCode(): string
     {
-        return '840';
+        return '0';
     }
 }

@@ -5,7 +5,7 @@ namespace EoneoPay\Currency\Currencies;
 
 use EoneoPay\Currency\Currency;
 
-class AUD extends Currency
+class Aud extends Currency
 {
     /**
      * Get the currency symbol for this currency

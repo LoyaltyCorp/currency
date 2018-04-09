@@ -22,7 +22,7 @@ class CurrencyTest extends TestCase
         $currency = new CurrencyStub();
 
         self::assertInstanceOf(CurrencyInterface::class, $currency);
-        self::assertSame('CurrencyStub', $currency->getAlphaCode());
+        self::assertSame('CURRENCYSTUB', $currency->getAlphaCode());
         self::assertSame("\u{1d530}", $currency->getCurrencySymbol());
         self::assertSame(10, $currency->getMinorUnit());
         self::assertSame('Dollarydoo', $currency->getName());

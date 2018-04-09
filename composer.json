@@ -3,7 +3,8 @@
   "description": "ISO 4217 compatible library for handling currencies",
   "keywords": [
     "eoneopay",
-    "currency"
+    "currency",
+    "formatter"
   ],
   "license": "BSD-3-Clause",
   "type": "library",

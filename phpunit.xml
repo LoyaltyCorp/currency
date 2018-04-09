@@ -14,6 +14,7 @@
             <directory suffix=".php">./src</directory>
             <exclude>
                 <directory suffix=".php">./src/Currencies</directory>
+                <directory suffix=".php">./src/Locales</directory>
             </exclude>
         </whitelist>
     </filter>

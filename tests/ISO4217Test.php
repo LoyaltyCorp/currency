@@ -3,21 +3,17 @@ declare(strict_types=1);
 
 namespace Tests\EoneoPay\Currency;
 
-use EoneoPay\Currency\Currencies\AUD;
+use EoneoPay\Currency\Currencies\Aud;
 use EoneoPay\Currency\Exceptions\InvalidCurrencyCodeException;
 use EoneoPay\Currency\ISO4217;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \EoneoPay\Currency\ISO4217
+ * @covers \EoneoPay\Currency\Iterator
  */
 class ISO4217Test extends TestCase
 {
-    /**
-     * @var array
-     */
-    private static $alphaCodes = ['AUD', 'EUR', 'JPY', 'NZD', 'USD', 'XBT'];
-
     /**
      * Find currency by alpha or numeric code
      *
@@ -29,13 +25,13 @@ class ISO4217Test extends TestCase
 
         // Ensure not case sensitive
         /** @noinspection UnnecessaryAssertionInspection Return type denotes CurrencyInterface, not AUD explcitly */
-        self::assertInstanceOf(AUD::class, $iso4217->find('AUD'));
+        self::assertInstanceOf(Aud::class, $iso4217->find('AUD'));
         /** @noinspection UnnecessaryAssertionInspection Return type denotes CurrencyInterface, not AUD explcitly */
-        self::assertInstanceOf(AUD::class, $iso4217->find('aud'));
+        self::assertInstanceOf(Aud::class, $iso4217->find('aud'));
 
         // Search by numeric code
         /** @noinspection UnnecessaryAssertionInspection Return type denotes CurrencyInterface, not AUD explcitly */
-        self::assertInstanceOf(AUD::class, (new ISO4217())->find('036'));
+        self::assertInstanceOf(Aud::class, (new ISO4217())->find('036'));
     }
 
     /**
@@ -50,8 +46,13 @@ class ISO4217Test extends TestCase
         (new ISO4217())->find('INVALID');
     }
 
+    /**
+     * Test supported currencies returns an array containing a known type
+     *
+     * @return void
+     */
     public function testGetSupportedAlphaCodes(): void
     {
-        self::assertSame(static::$alphaCodes, (new ISO4217())->getSupportedAlphaCodes());
+        self::assertContains('AUD', (new ISO4217())->getSupportedAlphaCodes());
     }
 }

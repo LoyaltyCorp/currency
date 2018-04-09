@@ -4,14 +4,13 @@ declare(strict_types=1);
 namespace EoneoPay\Currency;
 
 use EoneoPay\Currency\Interfaces\FormatterInterface;
-use NumberFormatter;
 
 class Formatter implements FormatterInterface
 {
     /**
      * The amount to format
      *
-     * @var string
+     * @var float
      */
     private $amount;
 
@@ -32,8 +31,8 @@ class Formatter implements FormatterInterface
      */
     public function __construct(string $amount, string $currency)
     {
-        // Remove all non-numeric values from amount
-        $this->amount = \preg_replace('/[^\d\-\.]+/', '', $amount);
+        // Remove all non-numeric values from amount and convert to float
+        $this->amount = (float)\preg_replace('/[^\d\-\.]+/', '', $amount);
 
         // Attempt to find the currency class
         $this->currency = (new ISO4217())->find($currency);
@@ -46,7 +45,7 @@ class Formatter implements FormatterInterface
      */
     public function decimal(): string
     {
-        return \sprintf(\sprintf('%%0.%df', $this->currency->getMinorUnit()), $this->amount);
+        return \sprintf(\sprintf('%%0.%df', $this->currency->getMinorUnit()), (string)$this->amount);
     }
 
     /**
@@ -55,25 +54,12 @@ class Formatter implements FormatterInterface
      * @param string $locale The locale to display the currency in
      *
      * @return string
+     *
+     * @throws \EoneoPay\Currency\Exceptions\InvalidLocaleIdentifierException Inherited, if locale is invalid
      */
     public function display(string $locale): string
     {
-        $formatter = new NumberFormatter($locale, NumberFormatter::CURRENCY);
-
-        // Set precision on pattern
-        $formatter->setPattern(
-            \preg_replace(
-                '/#0(\.0+)?/',
-                $this->currency->getMinorUnit() > 0 ?
-                    \sprintf('#0.%s', str_repeat('0', $this->currency->getMinorUnit())) : '#0',
-                $formatter->getPattern()
-            )
-        );
-
-        // Force currency symbol
-        $formatter->setSymbol(NumberFormatter::CURRENCY_SYMBOL, $this->currency->getCurrencySymbol());
-
-        return $formatter->formatCurrency((float)$this->amount, $this->currency->getAlphaCode());
+        return (new Translator())->find($locale)->formatCurrency($this->amount, $this->currency);
     }
 
     /**
@@ -85,11 +71,6 @@ class Formatter implements FormatterInterface
      */
     public function numeric(string $locale): string
     {
-        $formatter = new NumberFormatter($locale, NumberFormatter::DECIMAL);
-
-        // Configure currency display
-        $formatter->setAttribute(NumberFormatter::FRACTION_DIGITS, $this->currency->getMinorUnit());
-
-        return $formatter->format((float)$this->amount);
+        return (new Translator())->find($locale)->formatNumeric($this->amount, $this->currency);
     }
 }

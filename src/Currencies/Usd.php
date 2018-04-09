@@ -5,7 +5,7 @@ namespace EoneoPay\Currency\Currencies;
 
 use EoneoPay\Currency\Currency;
 
-class EUR extends Currency
+class Usd extends Currency
 {
     /**
      * Get the currency symbol for this currency
@@ -14,7 +14,7 @@ class EUR extends Currency
      */
     public function getCurrencySymbol(): string
     {
-        return "\u{20ac}";
+        return "\u{24}";
     }
 
     /**
@@ -34,7 +34,7 @@ class EUR extends Currency
      */
     public function getName(): string
     {
-        return 'Euro';
+        return 'United States Dollar';
     }
 
     /**
@@ -44,6 +44,6 @@ class EUR extends Currency
      */
     public function getNumericCode(): string
     {
-        return '978';
+        return '840';
     }
 }
