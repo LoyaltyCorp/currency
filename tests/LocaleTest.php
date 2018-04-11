@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\EoneoPay\Currency;
+namespace Tests\EoneoPay\Currencies;
 
-use EoneoPay\Currency\Interfaces\LocaleInterface;
+use EoneoPay\Currencies\Interfaces\LocaleInterface;
 use PHPUnit\Framework\TestCase;
-use Tests\EoneoPay\Currency\Stubs\CurrencyStub;
-use Tests\EoneoPay\Currency\Stubs\LocaleStub;
-use Tests\EoneoPay\Currency\Stubs\LocaleTranslatableStub;
+use Tests\EoneoPay\Currencies\Stubs\CurrencyStub;
+use Tests\EoneoPay\Currencies\Stubs\LocaleStub;
+use Tests\EoneoPay\Currencies\Stubs\LocaleTranslatableStub;
 
 /**
- * @covers \EoneoPay\Currency\Locale
+ * @covers \EoneoPay\Currencies\Locale
  */
 class LocaleTest extends TestCase
 {

@@ -1,11 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace EoneoPay\Currency;
+namespace EoneoPay\Currencies;
 
-use EoneoPay\Currency\Interfaces\CurrencyInterface;
-use EoneoPay\Currency\Interfaces\LocaleInterface;
+use EoneoPay\Currencies\Interfaces\CurrencyInterface;
+use EoneoPay\Currencies\Interfaces\LocaleInterface;
 
+/** @noinspection LowerAccessLevelInspection $translations is used where required by child locales */
 abstract class Locale implements LocaleInterface
 {
     /**
@@ -19,7 +20,7 @@ abstract class Locale implements LocaleInterface
      * Format a currency to the correct format
      *
      * @param float $value The value to format
-     * @param \EoneoPay\Currency\Interfaces\CurrencyInterface $currency The currency used
+     * @param \EoneoPay\Currencies\Interfaces\CurrencyInterface $currency The currency used
      *
      * @return string
      */
@@ -38,7 +39,7 @@ abstract class Locale implements LocaleInterface
      * Format a number to the correct format
      *
      * @param float $value The value to format
-     * @param \EoneoPay\Currency\Interfaces\CurrencyInterface $currency The currency used
+     * @param \EoneoPay\Currencies\Interfaces\CurrencyInterface $currency The currency used
      *
      * @return string
      */
@@ -125,7 +126,7 @@ abstract class Locale implements LocaleInterface
      * Format a currency to the correct format
      *
      * @param float $value The value to format
-     * @param \EoneoPay\Currency\Interfaces\CurrencyInterface $currency The currency used
+     * @param \EoneoPay\Currencies\Interfaces\CurrencyInterface $currency The currency used
      *
      * @return string
      */
@@ -146,7 +147,7 @@ abstract class Locale implements LocaleInterface
      * Format a currency to the correct format
      *
      * @param float $value The value to format
-     * @param \EoneoPay\Currency\Interfaces\CurrencyInterface $currency The currency used
+     * @param \EoneoPay\Currencies\Interfaces\CurrencyInterface $currency The currency used
      *
      * @return string
      */
@@ -164,7 +165,7 @@ abstract class Locale implements LocaleInterface
      * Format a number with the correct separators
      *
      * @param float $value The value to format
-     * @param \EoneoPay\Currency\Interfaces\CurrencyInterface $currency The currency being used
+     * @param \EoneoPay\Currencies\Interfaces\CurrencyInterface $currency The currency being used
      *
      * @return string
      */
@@ -181,7 +182,7 @@ abstract class Locale implements LocaleInterface
      * Format a number with the correct separators
      *
      * @param float $value The value to format
-     * @param \EoneoPay\Currency\Interfaces\CurrencyInterface $currency The currency being used
+     * @param \EoneoPay\Currencies\Interfaces\CurrencyInterface $currency The currency being used
      *
      * @return string
      */

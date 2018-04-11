@@ -1,9 +1,9 @@
 {
-  "name": "eoneopay/currency",
+  "name": "eoneopay/currencies",
   "description": "ISO 4217 compatible library for handling currencies",
   "keywords": [
     "eoneopay",
-    "currency",
+    "currencies",
     "formatter"
   ],
   "license": "BSD-3-Clause",
@@ -22,12 +22,12 @@
   },
   "autoload": {
     "psr-4": {
-      "EoneoPay\\Currency\\": "src/"
+      "EoneoPay\\Currencies\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Tests\\EoneoPay\\Currency\\": "tests/"
+      "Tests\\EoneoPay\\Currencies\\": "tests/"
     }
   },
   "minimum-stability": "stable",

@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\EoneoPay\Currency;
+namespace Tests\EoneoPay\Currencies;
 
-use EoneoPay\Currency\Locales\EnAu;
-use EoneoPay\Currency\Exceptions\InvalidLocaleIdentifierException;
-use EoneoPay\Currency\Translator;
+use EoneoPay\Currencies\Locales\EnAu;
+use EoneoPay\Currencies\Exceptions\InvalidLocaleIdentifierException;
+use EoneoPay\Currencies\Translator;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \EoneoPay\Currency\Iterator
- * @covers \EoneoPay\Currency\Translator
+ * @covers \EoneoPay\Currencies\Iterator
+ * @covers \EoneoPay\Currencies\Translator
  */
 class TranslatorTest extends TestCase
 {
@@ -53,6 +53,6 @@ class TranslatorTest extends TestCase
      */
     public function testGetSupportedAlphaCodes(): void
     {
-        self::assertContains('en_AU', (new Translator())->getSupportedLocales());
+        self::assertContains('en-AU', (new Translator())->getSupportedLocales());
     }
 }

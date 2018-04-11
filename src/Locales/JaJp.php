@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace EoneoPay\Currency\Locales;
+namespace EoneoPay\Currencies\Locales;
 
-use EoneoPay\Currency\Locale;
+use EoneoPay\Currencies\Locale;
 
 class JaJp extends Locale
 {
@@ -14,7 +14,7 @@ class JaJp extends Locale
      */
     public function getIdentifier(): string
     {
-        return 'ja_JP';
+        return 'ja-JP';
     }
 
     /**

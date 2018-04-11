@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace EoneoPay\Currency\Interfaces;
+namespace EoneoPay\Currencies\Interfaces;
 
 interface LocaleInterface
 {
@@ -9,7 +9,7 @@ interface LocaleInterface
      * Format a currency to the correct format
      *
      * @param float $value The value to format
-     * @param \EoneoPay\Currency\Interfaces\CurrencyInterface $currency The currency used
+     * @param \EoneoPay\Currencies\Interfaces\CurrencyInterface $currency The currency used
      *
      * @return string
      */
@@ -19,7 +19,7 @@ interface LocaleInterface
      * Format a number to the correct format
      *
      * @param float $value The value to format
-     * @param \EoneoPay\Currency\Interfaces\CurrencyInterface $currency The currency used
+     * @param \EoneoPay\Currencies\Interfaces\CurrencyInterface $currency The currency used
      *
      * @return string
      */

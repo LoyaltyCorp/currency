@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\EoneoPay\Currency\Stubs;
+namespace Tests\EoneoPay\Currencies\Stubs;
 
-use EoneoPay\Currency\Locale;
+use EoneoPay\Currencies\Locale;
 
 class LocaleStub extends Locale
 {

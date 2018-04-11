@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace EoneoPay\Currency;
+namespace EoneoPay\Currencies;
 
-use EoneoPay\Currency\Exceptions\InvalidCurrencyCodeException;
-use EoneoPay\Currency\Interfaces\CurrencyInterface;
-use EoneoPay\Currency\Interfaces\ISO4217Interface;
+use EoneoPay\Currencies\Exceptions\InvalidCurrencyCodeException;
+use EoneoPay\Currencies\Interfaces\CurrencyInterface;
+use EoneoPay\Currencies\Interfaces\ISO4217Interface;
 
 class ISO4217 extends Iterator implements ISO4217Interface
 {
@@ -14,9 +14,9 @@ class ISO4217 extends Iterator implements ISO4217Interface
      *
      * @param string $code The alpha or numeric code to find the currency for
      *
-     * @return \EoneoPay\Currency\Interfaces\CurrencyInterface
+     * @return \EoneoPay\Currencies\Interfaces\CurrencyInterface
      *
-     * @throws \EoneoPay\Currency\Exceptions\InvalidCurrencyCodeException Inherited, if currency is invalid
+     * @throws \EoneoPay\Currencies\Exceptions\InvalidCurrencyCodeException Inherited, if currency is invalid
      */
     public function find(string $code): CurrencyInterface
     {
@@ -46,9 +46,9 @@ class ISO4217 extends Iterator implements ISO4217Interface
      * @param string $code The alpha or numeric code to find the currency for
      * @param string $method The comparison method to use
      *
-     * @return \EoneoPay\Currency\Interfaces\CurrencyInterface
+     * @return \EoneoPay\Currencies\Interfaces\CurrencyInterface
      *
-     * @throws \EoneoPay\Currency\Exceptions\InvalidCurrencyCodeException If currency is invalid
+     * @throws \EoneoPay\Currencies\Exceptions\InvalidCurrencyCodeException If currency is invalid
      */
     private function findCurrency(string $code, string $method): CurrencyInterface
     {

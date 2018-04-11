@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace EoneoPay\Currency;
+namespace EoneoPay\Currencies;
 
-use EoneoPay\Currency\Exceptions\InvalidLocaleIdentifierException;
-use EoneoPay\Currency\Interfaces\LocaleInterface;
-use EoneoPay\Currency\Interfaces\TranslatorInterface;
+use EoneoPay\Currencies\Exceptions\InvalidLocaleIdentifierException;
+use EoneoPay\Currencies\Interfaces\LocaleInterface;
+use EoneoPay\Currencies\Interfaces\TranslatorInterface;
 
 class Translator extends Iterator implements TranslatorInterface
 {
@@ -14,15 +14,15 @@ class Translator extends Iterator implements TranslatorInterface
      *
      * @param string $identifier The locale identifier to find
      *
-     * @return \EoneoPay\Currency\Interfaces\LocaleInterface
+     * @return \EoneoPay\Currencies\Interfaces\LocaleInterface
      *
-     * @throws \EoneoPay\Currency\Exceptions\InvalidLocaleIdentifierException If locale is invalid
+     * @throws \EoneoPay\Currencies\Exceptions\InvalidLocaleIdentifierException If locale is invalid
      */
     public function find(string $identifier): LocaleInterface
     {
         // Format identifier
         $identifier = \sprintf(
-            '%s_%s',
+            '%s-%s',
             \substr(\preg_replace('/[^a-zA-Z]+/', '', $identifier), 0, 2),
             \substr(\preg_replace('/[^a-zA-Z]+/', '', $identifier), -2)
         );

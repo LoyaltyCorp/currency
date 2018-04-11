@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\EoneoPay\Currency;
+namespace Tests\EoneoPay\Currencies;
 
-use EoneoPay\Currency\Formatter;
+use EoneoPay\Currencies\Formatter;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
  *  - ja_JP, Japan, no minor units, leading symbol, no thousands, period minor, leading negative
  *  - nl_NL, Netherlands, two minor units, leading symbol, period thousands, comma minor, trailing negative
  *
- * @covers \EoneoPay\Currency\Formatter
+ * @covers \EoneoPay\Currencies\Formatter
  */
 class FormatterTest extends TestCase
 {
@@ -31,13 +31,13 @@ class FormatterTest extends TestCase
         self::assertSame(
             "\u{661}\u{662}\u{66C}\u{663}\u{664}\u{665}\u{66B}\u{660}\u{661}\u{662}\u{663}\u{664}\u{665}\u{666}" .
             "\u{669} \u{e3f}",
-            $formatter->display('ar_OM')
+            $formatter->currency('ar_OM')
         );
-        self::assertSame("\u{e3f} 12345.01234569", $formatter->display('zh_CN'));
-        self::assertSame("\u{e3f}12,345.01234569", $formatter->display('en_AU'));
-        self::assertSame("12 345,01234569 \u{e3f}", $formatter->display('fr_FR'));
-        self::assertSame("\u{e3f} 12345.01234569", $formatter->display('ja_JP'));
-        self::assertSame("\u{e3f} 12.345,01234569", $formatter->display('nl_NL'));
+        self::assertSame("\u{e3f} 12345.01234569", $formatter->currency('zh_CN'));
+        self::assertSame("\u{e3f}12,345.01234569", $formatter->currency('en_AU'));
+        self::assertSame("12 345,01234569 \u{e3f}", $formatter->currency('fr_FR'));
+        self::assertSame("\u{e3f} 12345.01234569", $formatter->currency('ja_JP'));
+        self::assertSame("\u{e3f} 12.345,01234569", $formatter->currency('nl_NL'));
     }
 
     /**
@@ -49,12 +49,12 @@ class FormatterTest extends TestCase
     {
         // Format Japanese Yen, ensure all locales return no minor units
         $formatter = new Formatter('12345.062', 'JPY');
-        self::assertSame("\u{661}\u{662}\u{66C}\u{663}\u{664}\u{665} \u{a5}", $formatter->display('ar_OM'));
-        self::assertSame("\u{a5} 12345", $formatter->display('zh_CN'));
-        self::assertSame("\u{a5}12,345", $formatter->display('en_AU'));
-        self::assertSame("12 345 \u{a5}", $formatter->display('fr_FR'));
-        self::assertSame("\u{a5} 12345", $formatter->display('ja_JP'));
-        self::assertSame("\u{a5} 12.345", $formatter->display('nl_NL'));
+        self::assertSame("\u{661}\u{662}\u{66C}\u{663}\u{664}\u{665} \u{a5}", $formatter->currency('ar_OM'));
+        self::assertSame("\u{a5} 12345", $formatter->currency('zh_CN'));
+        self::assertSame("\u{a5}12,345", $formatter->currency('en_AU'));
+        self::assertSame("12 345 \u{a5}", $formatter->currency('fr_FR'));
+        self::assertSame("\u{a5} 12345", $formatter->currency('ja_JP'));
+        self::assertSame("\u{a5} 12.345", $formatter->currency('nl_NL'));
     }
 
     /**
@@ -68,13 +68,13 @@ class FormatterTest extends TestCase
         $formatter = new Formatter('12345.0686', 'AUD');
         self::assertSame(
             "\u{661}\u{662}\u{66C}\u{663}\u{664}\u{665}\u{66B}\u{660}\u{667} \u{24}",
-            $formatter->display('ar_OM')
+            $formatter->currency('ar_OM')
         );
-        self::assertSame("\u{24} 12345.07", $formatter->display('zh_CN'));
-        self::assertSame("\u{24}12,345.07", $formatter->display('en_AU'));
-        self::assertSame("12 345,07 \u{24}", $formatter->display('fr_FR'));
-        self::assertSame("\u{24} 12345.07", $formatter->display('ja_JP'));
-        self::assertSame("\u{24} 12.345,07", $formatter->display('nl_NL'));
+        self::assertSame("\u{24} 12345.07", $formatter->currency('zh_CN'));
+        self::assertSame("\u{24}12,345.07", $formatter->currency('en_AU'));
+        self::assertSame("12 345,07 \u{24}", $formatter->currency('fr_FR'));
+        self::assertSame("\u{24} 12345.07", $formatter->currency('ja_JP'));
+        self::assertSame("\u{24} 12.345,07", $formatter->currency('nl_NL'));
     }
 
     /**
@@ -145,13 +145,13 @@ class FormatterTest extends TestCase
         $formatter = new Formatter('-12345.0686', 'AUD');
         self::assertSame(
             "\u{61c}-\u{661}\u{662}\u{66C}\u{663}\u{664}\u{665}\u{66B}\u{660}\u{667} \u{24}",
-            $formatter->display('ar_OM')
+            $formatter->currency('ar_OM')
         );
-        self::assertSame("-\u{24} 12345.07", $formatter->display('zh_CN'));
-        self::assertSame("-\u{24}12,345.07", $formatter->display('en_AU'));
-        self::assertSame("-12 345,07 \u{24}", $formatter->display('fr_FR'));
-        self::assertSame("-\u{24} 12345.07", $formatter->display('ja_JP'));
-        self::assertSame("\u{24} -12.345,07", $formatter->display('nl_NL'));
+        self::assertSame("-\u{24} 12345.07", $formatter->currency('zh_CN'));
+        self::assertSame("-\u{24}12,345.07", $formatter->currency('en_AU'));
+        self::assertSame("-12 345,07 \u{24}", $formatter->currency('fr_FR'));
+        self::assertSame("-\u{24} 12345.07", $formatter->currency('ja_JP'));
+        self::assertSame("\u{24} -12.345,07", $formatter->currency('nl_NL'));
     }
 
     /**

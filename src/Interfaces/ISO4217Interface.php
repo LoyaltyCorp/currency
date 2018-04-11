@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace EoneoPay\Currency\Interfaces;
+namespace EoneoPay\Currencies\Interfaces;
 
 interface ISO4217Interface
 {
@@ -10,9 +10,9 @@ interface ISO4217Interface
      *
      * @param string $code The alpha or numeric code to find the currency for
      *
-     * @return \EoneoPay\Currency\Interfaces\CurrencyInterface
+     * @return \EoneoPay\Currencies\Interfaces\CurrencyInterface
      *
-     * @throws \EoneoPay\Currency\Exceptions\InvalidCurrencyCodeException Inherited, if currency is invalid
+     * @throws \EoneoPay\Currencies\Exceptions\InvalidCurrencyCodeException Inherited, if currency is invalid
      */
     public function find(string $code): CurrencyInterface;
 
@@ -21,5 +21,5 @@ interface ISO4217Interface
      *
      * @return array
      */
-//    public function getSupportedAlphaCodes(): array;
+    public function getSupportedAlphaCodes(): array;
 }

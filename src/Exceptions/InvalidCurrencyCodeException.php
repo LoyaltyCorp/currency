@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace EoneoPay\Currency\Exceptions;
+namespace EoneoPay\Currencies\Exceptions;
 
 use InvalidArgumentException;
 

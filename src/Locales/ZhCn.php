@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace EoneoPay\Currency\Locales;
+namespace EoneoPay\Currencies\Locales;
 
-use EoneoPay\Currency\Locale;
+use EoneoPay\Currencies\Locale;
 
 class ZhCn extends Locale
 {
@@ -14,7 +14,7 @@ class ZhCn extends Locale
      */
     public function getIdentifier(): string
     {
-        return 'zh_CN';
+        return 'zh-CN';
     }
 
     /**

@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\EoneoPay\Currency;
+namespace Tests\EoneoPay\Currencies;
 
-use EoneoPay\Currency\Interfaces\CurrencyInterface;
+use EoneoPay\Currencies\Interfaces\CurrencyInterface;
 use PHPUnit\Framework\TestCase;
-use Tests\EoneoPay\Currency\Stubs\CurrencyStub;
+use Tests\EoneoPay\Currencies\Stubs\CurrencyStub;
 
 /**
- * @covers \EoneoPay\Currency\Currency
+ * @covers \EoneoPay\Currencies\Currency
  */
 class CurrencyTest extends TestCase
 {

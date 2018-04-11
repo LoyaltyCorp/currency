@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace EoneoPay\Currency\Locales;
+namespace EoneoPay\Currencies\Locales;
 
-use EoneoPay\Currency\Locale;
+use EoneoPay\Currencies\Locale;
 
 class EnAu extends Locale
 {
@@ -14,7 +14,7 @@ class EnAu extends Locale
      */
     public function getIdentifier(): string
     {
-        return 'en_AU';
+        return 'en-AU';
     }
 
     /**

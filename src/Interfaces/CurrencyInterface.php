@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace EoneoPay\Currency\Interfaces;
+namespace EoneoPay\Currencies\Interfaces;
 
 interface CurrencyInterface
 {
@@ -11,6 +11,13 @@ interface CurrencyInterface
      * @return string
      */
     public function getAlphaCode(): string;
+
+    /**
+     * Get the currency symbol for this currency
+     *
+     * @return string
+     */
+    public function getCurrencySymbol(): string;
 
     /**
      * Get the minor unit for this currency
@@ -32,11 +39,4 @@ interface CurrencyInterface
      * @return string
      */
     public function getNumericCode(): string;
-
-    /**
-     * Get the currency symbol for this currency
-     *
-     * @return string
-     */
-    public function getCurrencySymbol(): string;
 }

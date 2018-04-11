@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace EoneoPay\Currency\Locales;
+namespace EoneoPay\Currencies\Locales;
 
-use EoneoPay\Currency\Locale;
+use EoneoPay\Currencies\Locale;
 
 class FrFr extends Locale
 {
@@ -14,7 +14,7 @@ class FrFr extends Locale
      */
     public function getIdentifier(): string
     {
-        return 'fr_FR';
+        return 'fr-FR';
     }
 
     /**

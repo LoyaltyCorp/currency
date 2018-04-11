@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace EoneoPay\Currency\Currencies;
+namespace EoneoPay\Currencies\Currencies;
 
-use EoneoPay\Currency\Currency;
+use EoneoPay\Currencies\Currency;
 
 class Xbt extends Currency
 {

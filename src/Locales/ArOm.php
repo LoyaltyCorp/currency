@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace EoneoPay\Currency\Locales;
+namespace EoneoPay\Currencies\Locales;
 
-use EoneoPay\Currency\Locale;
+use EoneoPay\Currencies\Locale;
 
 class ArOm extends Locale
 {
@@ -34,7 +34,7 @@ class ArOm extends Locale
      */
     public function getIdentifier(): string
     {
-        return 'ar_OM';
+        return 'ar-OM';
     }
 
     /**

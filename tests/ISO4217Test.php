@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\EoneoPay\Currency;
+namespace Tests\EoneoPay\Currencies;
 
-use EoneoPay\Currency\Currencies\Aud;
-use EoneoPay\Currency\Exceptions\InvalidCurrencyCodeException;
-use EoneoPay\Currency\ISO4217;
+use EoneoPay\Currencies\Currencies\Aud;
+use EoneoPay\Currencies\Exceptions\InvalidCurrencyCodeException;
+use EoneoPay\Currencies\ISO4217;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \EoneoPay\Currency\ISO4217
- * @covers \EoneoPay\Currency\Iterator
+ * @covers \EoneoPay\Currencies\ISO4217
+ * @covers \EoneoPay\Currencies\Iterator
  */
 class ISO4217Test extends TestCase
 {

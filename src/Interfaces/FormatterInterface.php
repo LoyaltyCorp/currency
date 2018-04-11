@@ -1,17 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace EoneoPay\Currency\Interfaces;
+namespace EoneoPay\Currencies\Interfaces;
 
 interface FormatterInterface
 {
-    /**
-     * Get currency formatted as standard decimal value
-     *
-     * @return string
-     */
-    public function decimal(): string;
-
     /**
      * Get currency formatted for display including symbol
      *
@@ -19,7 +12,14 @@ interface FormatterInterface
      *
      * @return string
      */
-    public function display(string $locale): string;
+    public function currency(string $locale): string;
+
+    /**
+     * Get currency formatted as standard decimal value
+     *
+     * @return string
+     */
+    public function decimal(): string;
 
     /**
      * Get currency formatted with only numeric values

@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace EoneoPay\Currency;
+namespace EoneoPay\Currencies;
 
-use EoneoPay\Currency\Interfaces\CurrencyInterface;
+use EoneoPay\Currencies\Interfaces\CurrencyInterface;
 
 abstract class Currency implements CurrencyInterface
 {
