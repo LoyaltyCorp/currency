@@ -41,7 +41,7 @@ abstract class Iterator
             $return = $closure($instantiated);
 
             // Keep looping until closure return something else than null
-            if (null !== $return) {
+            if ($return !== null) {
                 return $return;
             }
         }
