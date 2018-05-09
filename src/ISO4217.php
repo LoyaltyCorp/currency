@@ -61,7 +61,7 @@ class ISO4217 extends Iterator implements ISO4217Interface
             return null;
         }, 'Currencies', CurrencyInterface::class);
 
-        if (null !== $currency) {
+        if ($currency !== null) {
             return $currency;
         }
 

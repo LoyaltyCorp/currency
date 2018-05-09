@@ -36,7 +36,7 @@ class Translator extends Iterator implements TranslatorInterface
             return null;
         }, 'Locales', LocaleInterface::class);
 
-        if (null !== $locale) {
+        if ($locale !== null) {
             return $locale;
         }
 
