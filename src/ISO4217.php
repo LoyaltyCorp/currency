@@ -27,13 +27,13 @@ class ISO4217 extends Iterator implements ISO4217Interface
     /**
      * Return all supported currencies alpha codes.
      *
-     * @return array
+     * @return string[]
      */
     public function getSupportedAlphaCodes(): array
     {
         $alphaCodes = [];
 
-        $this->iterateDirectory(function (CurrencyInterface $currency) use (&$alphaCodes) {
+        $this->iterateDirectory(function (CurrencyInterface $currency) use (&$alphaCodes): void {
             $alphaCodes[] = $currency->getAlphaCode();
         }, 'Currencies', CurrencyInterface::class);
 

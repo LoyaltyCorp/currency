@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Tests\EoneoPay\Currencies;
 
-use EoneoPay\Currencies\Locales\EnAu;
 use EoneoPay\Currencies\Exceptions\InvalidLocaleIdentifierException;
+use EoneoPay\Currencies\Locales\EnAu;
 use EoneoPay\Currencies\Translator;
 use PHPUnit\Framework\TestCase;
 

@@ -49,13 +49,13 @@ class Translator extends Iterator implements TranslatorInterface
     /**
      * Return all supported supported locales
      *
-     * @return array
+     * @return string[]
      */
     public function getSupportedLocales(): array
     {
         $localeCodes = [];
 
-        $this->iterateDirectory(function (LocaleInterface $locale) use (&$localeCodes) {
+        $this->iterateDirectory(function (LocaleInterface $locale) use (&$localeCodes): void {
             $localeCodes[] = $locale->getIdentifier();
         }, 'Locales', LocaleInterface::class);
 

@@ -99,7 +99,7 @@ class ArOm extends Locale
     /**
      * Get translation mapping for demical -> arabic numbers
      *
-     * @return array
+     * @return string[]
      */
     protected function getTranslationMapping(): array
     {
