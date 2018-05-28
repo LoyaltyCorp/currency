@@ -12,7 +12,7 @@ abstract class Locale implements LocaleInterface
     /**
      * Get translation mapping for replacing integers to another language
      *
-     * @var array
+     * @var string[]
      */
     protected $translations = [];
 
@@ -64,7 +64,7 @@ abstract class Locale implements LocaleInterface
     private function translate(string $value): string
     {
         // If there is no translation map or it's invalid, return
-        if (!\is_array($this->translations) || !\count($this->translations)) {
+        if (\is_array($this->translations) === false || \count($this->translations) === 0) {
             return $value;
         }
 

@@ -19,7 +19,7 @@ interface TranslatorInterface
     /**
      * Return all supported supported locales
      *
-     * @return array
+     * @return string[]
      */
     public function getSupportedLocales(): array;
 }

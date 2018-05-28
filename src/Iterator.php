@@ -30,7 +30,7 @@ abstract class Iterator
             $instantiated = new $className;
 
             // Make sure class implements the correct interface
-            if (!$instantiated instanceof $interface) {
+            if (($instantiated instanceof $interface) === false) {
                 // @codeCoverageIgnoreStart
                 // This is only here as a fail-safe if a php file which doesn't implement interface is added to
                 // the directory

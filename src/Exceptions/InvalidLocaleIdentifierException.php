@@ -7,5 +7,5 @@ use InvalidArgumentException;
 
 class InvalidLocaleIdentifierException extends InvalidArgumentException
 {
-    //
+
 }

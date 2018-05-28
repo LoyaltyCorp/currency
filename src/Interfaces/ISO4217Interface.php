@@ -19,7 +19,7 @@ interface ISO4217Interface
     /**
      * Return all supported currencies alpha codes.
      *
-     * @return array
+     * @return string[]
      */
     public function getSupportedAlphaCodes(): array;
 }
