@@ -5,14 +5,14 @@ namespace EoneoPay\Currencies\Currencies;
 
 use EoneoPay\Currencies\Currency;
 
-class Xbt extends Currency
+class Awg extends Currency
 {
     /**
      * @inheritdoc
      */
     public function getCurrencySymbol(): string
     {
-        return "\u{e3f}";
+        return "\u{41}\u{66}\u{6c}\u{2e}";
     }
 
     /**
@@ -20,7 +20,7 @@ class Xbt extends Currency
      */
     public function getMinorUnit(): int
     {
-        return 8;
+        return 2;
     }
 
     /**
@@ -28,7 +28,7 @@ class Xbt extends Currency
      */
     public function getName(): string
     {
-        return 'Bitcoin';
+        return 'Aruban Florin';
     }
 
     /**
@@ -36,6 +36,6 @@ class Xbt extends Currency
      */
     public function getNumericCode(): string
     {
-        return '-';
+        return '533';
     }
 }
