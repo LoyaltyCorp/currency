@@ -11,15 +11,13 @@ interface ISO4217Interface
      * @param string $code The alpha or numeric code to find the currency for
      *
      * @return \EoneoPay\Currencies\Interfaces\CurrencyInterface
-     *
-     * @throws \EoneoPay\Currencies\Exceptions\InvalidCurrencyCodeException Inherited, if currency is invalid
      */
     public function find(string $code): CurrencyInterface;
 
     /**
      * Return all supported currencies alpha codes.
      *
-     * @return array
+     * @return string[]
      */
     public function getSupportedAlphaCodes(): array;
 }

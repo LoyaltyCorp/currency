@@ -10,13 +10,7 @@ use EoneoPay\Currencies\Interfaces\TranslatorInterface;
 class Translator extends Iterator implements TranslatorInterface
 {
     /**
-     * Get a list of all locales available in the system
-     *
-     * @param string $identifier The locale identifier to find
-     *
-     * @return \EoneoPay\Currencies\Interfaces\LocaleInterface
-     *
-     * @throws \EoneoPay\Currencies\Exceptions\InvalidLocaleIdentifierException If locale is invalid
+     * @inheritdoc
      */
     public function find(string $identifier): LocaleInterface
     {
@@ -27,7 +21,7 @@ class Translator extends Iterator implements TranslatorInterface
             \substr(\preg_replace('/[^a-zA-Z]+/', '', $identifier), -2)
         );
 
-        $locale = $this->iterateDirectory(function (LocaleInterface $locale) use ($identifier) {
+        $locale = $this->iterateDirectory(function (LocaleInterface $locale) use ($identifier): ?LocaleInterface {
             // Check currency against code
             if (\mb_strtolower($locale->getIdentifier()) === \mb_strtolower($identifier)) {
                 return $locale;
@@ -36,7 +30,7 @@ class Translator extends Iterator implements TranslatorInterface
             return null;
         }, 'Locales', LocaleInterface::class);
 
-        if (null !== $locale) {
+        if ($locale !== null) {
             return $locale;
         }
 
@@ -47,15 +41,13 @@ class Translator extends Iterator implements TranslatorInterface
     }
 
     /**
-     * Return all supported supported locales
-     *
-     * @return array
+     * @inheritdoc
      */
     public function getSupportedLocales(): array
     {
         $localeCodes = [];
 
-        $this->iterateDirectory(function (LocaleInterface $locale) use (&$localeCodes) {
+        $this->iterateDirectory(function (LocaleInterface $locale) use (&$localeCodes): void {
             $localeCodes[] = $locale->getIdentifier();
         }, 'Locales', LocaleInterface::class);
 

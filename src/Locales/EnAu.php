@@ -8,9 +8,7 @@ use EoneoPay\Currencies\Locale;
 class EnAu extends Locale
 {
     /**
-     * Get the identifier for the current locale
-     *
-     * @return string
+     * @inheritdoc
      */
     public function getIdentifier(): string
     {
@@ -18,9 +16,7 @@ class EnAu extends Locale
     }
 
     /**
-     * Get decimal separator
-     *
-     * @return string
+     * @inheritdoc
      */
     protected function getDecimalSeparator(): string
     {
@@ -28,9 +24,7 @@ class EnAu extends Locale
     }
 
     /**
-     * Get thousands separator
-     *
-     * @return string
+     * @inheritdoc
      */
     protected function getThousandsSeparator(): string
     {
@@ -38,14 +32,7 @@ class EnAu extends Locale
     }
 
     /**
-     * Get format for currency
-     *
-     * This uses placeholders for formatting numbers:
-     *  - Hyphen/minus (-|\u{2D}) to denote where a negative symbol should go
-     *  - Currency sign (¤|\u{A4}) to denote where a currency symbol should go
-     *  - Number sign (#|\u{23}) to denote where the formatted number should go
-     *
-     * @return string
+     * @inheritdoc
      */
     protected function getCurrencyFormat(): string
     {
@@ -53,9 +40,7 @@ class EnAu extends Locale
     }
 
     /**
-     * Get negative value symbol
-     *
-     * @return string
+     * @inheritdoc
      */
     protected function getNegativeSymbol(): string
     {
@@ -63,13 +48,7 @@ class EnAu extends Locale
     }
 
     /**
-     * Get numeric format
-     *
-     * This uses placeholders for formatting numbers:
-     *  - Hyphen/minus (-|\u{2D}) to denote where a negative symbol should go
-     *  - Number sign (#|\u{23}) to denote where the formatted number should go
-     *
-     * @return string
+     * @inheritdoc
      */
     protected function getNumericFormat(): string
     {

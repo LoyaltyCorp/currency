@@ -5,17 +5,10 @@ namespace EoneoPay\Currencies;
 
 use EoneoPay\Currencies\Interfaces\CurrencyInterface;
 use EoneoPay\Currencies\Interfaces\LocaleInterface;
+use EoneoPay\Currencies\Interfaces\Locales\TranslatableInterface;
 
-/** @noinspection LowerAccessLevelInspection $translations is used where required by child locales */
 abstract class Locale implements LocaleInterface
 {
-    /**
-     * Get translation mapping for replacing integers to another language
-     *
-     * @var array
-     */
-    protected $translations = [];
-
     /**
      * Format a currency to the correct format
      *
@@ -63,16 +56,19 @@ abstract class Locale implements LocaleInterface
      */
     private function translate(string $value): string
     {
-        // If there is no translation map or it's invalid, return
-        if (!\is_array($this->translations) || !\count($this->translations)) {
+        // If locale is not translatable, return
+        if (\is_a($this, TranslatableInterface::class) === false) {
             return $value;
         }
+
+        /** @var \EoneoPay\Currencies\Interfaces\Locales\TranslatableInterface $this */
+        $mapping = $this->getTranslationMapping();
 
         // Translate
         $translated = '';
         foreach (\str_split($value) as $character) {
             // Add to string
-            $translated .= $this->translations[$character] ?? $character;
+            $translated .= $mapping[$character] ?? $character;
         }
 
         return $translated;

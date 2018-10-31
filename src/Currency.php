@@ -8,9 +8,7 @@ use EoneoPay\Currencies\Interfaces\CurrencyInterface;
 abstract class Currency implements CurrencyInterface
 {
     /**
-     * Get the alphabetic code for this currency
-     *
-     * @return string
+     * @inheritdoc
      */
     public function getAlphaCode(): string
     {
