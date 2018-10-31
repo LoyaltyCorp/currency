@@ -5,6 +5,7 @@ namespace EoneoPay\Currencies;
 
 use EoneoPay\Currencies\Interfaces\CurrencyInterface;
 
+/** @SuppressWarnings(PHPMD.NumberOfChildren) Base functionality for all currencies */
 abstract class Currency implements CurrencyInterface
 {
     /**

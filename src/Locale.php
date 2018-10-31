@@ -7,6 +7,7 @@ use EoneoPay\Currencies\Interfaces\CurrencyInterface;
 use EoneoPay\Currencies\Interfaces\LocaleInterface;
 use EoneoPay\Currencies\Interfaces\Locales\TranslatableInterface;
 
+/** @SuppressWarnings(PHPMD.NumberOfChildren) Base functionality for all locales */
 abstract class Locale implements LocaleInterface
 {
     /**
