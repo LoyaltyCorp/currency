@@ -8,9 +8,7 @@ use EoneoPay\Currencies\Currency;
 class Jpy extends Currency
 {
     /**
-     * Get the currency symbol for this currency
-     *
-     * @return string
+     * @inheritdoc
      */
     public function getCurrencySymbol(): string
     {
@@ -18,9 +16,7 @@ class Jpy extends Currency
     }
 
     /**
-     * Get the minor unit for this currency
-     *
-     * @return int
+     * @inheritdoc
      */
     public function getMinorUnit(): int
     {
@@ -28,19 +24,15 @@ class Jpy extends Currency
     }
 
     /**
-     * Get the currency name
-     *
-     * @return string
+     * @inheritdoc
      */
     public function getName(): string
     {
-        return 'Japanese Yen';
+        return 'Yen';
     }
 
     /**
-     * Get the numeric code for this currency
-     *
-     * @return string
+     * @inheritdoc
      */
     public function getNumericCode(): string
     {

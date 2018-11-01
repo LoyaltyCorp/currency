@@ -7,5 +7,4 @@ use InvalidArgumentException;
 
 class InvalidCurrencyCodeException extends InvalidArgumentException
 {
-
 }

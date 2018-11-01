@@ -10,13 +10,7 @@ use EoneoPay\Currencies\Interfaces\ISO4217Interface;
 class ISO4217 extends Iterator implements ISO4217Interface
 {
     /**
-     * Find a currency by alpha or numeric code
-     *
-     * @param string $code The alpha or numeric code to find the currency for
-     *
-     * @return \EoneoPay\Currencies\Interfaces\CurrencyInterface
-     *
-     * @throws \EoneoPay\Currencies\Exceptions\InvalidCurrencyCodeException Inherited, if currency is invalid
+     * @inheritdoc
      */
     public function find(string $code): CurrencyInterface
     {
@@ -25,9 +19,7 @@ class ISO4217 extends Iterator implements ISO4217Interface
     }
 
     /**
-     * Return all supported currencies alpha codes.
-     *
-     * @return string[]
+     * @inheritdoc
      */
     public function getSupportedAlphaCodes(): array
     {
@@ -52,14 +44,18 @@ class ISO4217 extends Iterator implements ISO4217Interface
      */
     private function findCurrency(string $code, string $method): CurrencyInterface
     {
-        $currency = $this->iterateDirectory(function (CurrencyInterface $currency) use ($code, $method) {
-            // Check currency against code
-            if (\mb_strtolower($currency->{$method}()) === \mb_strtolower($code)) {
-                return $currency;
-            }
+        $currency = $this->iterateDirectory(
+            function (CurrencyInterface $currency) use ($code, $method): ?CurrencyInterface {
+                // Check currency against code
+                if (\mb_strtolower($currency->{$method}()) === \mb_strtolower($code)) {
+                    return $currency;
+                }
 
-            return null;
-        }, 'Currencies', CurrencyInterface::class);
+                return null;
+            },
+            'Currencies',
+            CurrencyInterface::class
+        );
 
         if ($currency !== null) {
             return $currency;

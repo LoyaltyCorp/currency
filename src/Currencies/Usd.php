@@ -8,9 +8,7 @@ use EoneoPay\Currencies\Currency;
 class Usd extends Currency
 {
     /**
-     * Get the currency symbol for this currency
-     *
-     * @return string
+     * @inheritdoc
      */
     public function getCurrencySymbol(): string
     {
@@ -18,9 +16,7 @@ class Usd extends Currency
     }
 
     /**
-     * Get the minor unit for this currency
-     *
-     * @return int
+     * @inheritdoc
      */
     public function getMinorUnit(): int
     {
@@ -28,9 +24,7 @@ class Usd extends Currency
     }
 
     /**
-     * Get the currency name
-     *
-     * @return string
+     * @inheritdoc
      */
     public function getName(): string
     {
@@ -38,9 +32,7 @@ class Usd extends Currency
     }
 
     /**
-     * Get the numeric code for this currency
-     *
-     * @return string
+     * @inheritdoc
      */
     public function getNumericCode(): string
     {
