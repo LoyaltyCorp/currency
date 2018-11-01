@@ -1,18 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\EoneoPay\Currencies\Stubs;
+namespace EoneoPay\Currencies\Currencies;
 
 use EoneoPay\Currencies\Currency;
 
-class CurrencyStub extends Currency
+class Pab extends Currency
 {
     /**
      * @inheritdoc
      */
     public function getCurrencySymbol(): string
     {
-        return "\u{1d530}";
+        return "\u{42}\u{2f}\u{2e}";
     }
 
     /**
@@ -20,7 +20,7 @@ class CurrencyStub extends Currency
      */
     public function getMinorUnit(): int
     {
-        return 10;
+        return 2;
     }
 
     /**
@@ -28,7 +28,7 @@ class CurrencyStub extends Currency
      */
     public function getName(): string
     {
-        return 'Dollarydoo';
+        return 'Balboa';
     }
 
     /**
@@ -36,6 +36,6 @@ class CurrencyStub extends Currency
      */
     public function getNumericCode(): string
     {
-        return '123';
+        return '590';
     }
 }

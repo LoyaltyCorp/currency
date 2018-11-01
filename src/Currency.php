@@ -14,6 +14,7 @@ abstract class Currency implements CurrencyInterface
     public function getAlphaCode(): string
     {
         // Get class extending currency, base class name will match alpha code
-        return \mb_strtoupper(\substr(\strrchr(\get_class($this), '\\'), 1));
+        // Replacement is required for currencies using reserved names like TRY -> TRY0
+        return \preg_replace('/[^A-Z]/', '', \mb_strtoupper(\substr(\strrchr(\get_class($this), '\\'), 1)));
     }
 }

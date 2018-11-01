@@ -5,7 +5,7 @@ namespace Tests\EoneoPay\Currencies;
 
 use EoneoPay\Currencies\Interfaces\LocaleInterface;
 use PHPUnit\Framework\TestCase;
-use Tests\EoneoPay\Currencies\Stubs\CurrencyStub;
+use Tests\EoneoPay\Currencies\Stubs\CurrencyStub0;
 use Tests\EoneoPay\Currencies\Stubs\LocaleStub;
 use Tests\EoneoPay\Currencies\Stubs\LocaleTranslatableStub;
 
@@ -25,10 +25,10 @@ class LocaleTest extends TestCase
 
         self::assertInstanceOf(LocaleInterface::class, $locale);
         self::assertSame('te_ST', $locale->getIdentifier());
-        self::assertSame('𝔰12,345.6789000000', $locale->formatCurrency(12345.67890, new CurrencyStub()));
-        self::assertSame('12,345.6789000000', $locale->formatNumeric(12345.67890, new CurrencyStub()));
-        self::assertSame('-𝔰12,345.6789000000', $locale->formatCurrency(-12345.67890, new CurrencyStub()));
-        self::assertSame('- 12,345.6789000000', $locale->formatNumeric(-12345.67890, new CurrencyStub()));
+        self::assertSame('𝔰12,345.6789000000', $locale->formatCurrency(12345.67890, new CurrencyStub0()));
+        self::assertSame('12,345.6789000000', $locale->formatNumeric(12345.67890, new CurrencyStub0()));
+        self::assertSame('-𝔰12,345.6789000000', $locale->formatCurrency(-12345.67890, new CurrencyStub0()));
+        self::assertSame('- 12,345.6789000000', $locale->formatNumeric(-12345.67890, new CurrencyStub0()));
     }
 
     /**
@@ -42,9 +42,9 @@ class LocaleTest extends TestCase
 
         self::assertInstanceOf(LocaleInterface::class, $locale);
         self::assertSame('te_TR', $locale->getIdentifier());
-        self::assertSame('!@:#$%?^&*()))))) 𝔰', $locale->formatCurrency(12345.67890, new CurrencyStub()));
-        self::assertSame('!@:#$%?^&*())))))', $locale->formatNumeric(12345.67890, new CurrencyStub()));
-        self::assertSame('!@:#$%?^&*()))))) 𝔰|', $locale->formatCurrency(-12345.67890, new CurrencyStub()));
-        self::assertSame('!@:#$%?^&*()))))) ||', $locale->formatNumeric(-12345.67890, new CurrencyStub()));
+        self::assertSame('!@:#$%?^&*()))))) 𝔰', $locale->formatCurrency(12345.67890, new CurrencyStub0()));
+        self::assertSame('!@:#$%?^&*())))))', $locale->formatNumeric(12345.67890, new CurrencyStub0()));
+        self::assertSame('!@:#$%?^&*()))))) 𝔰|', $locale->formatCurrency(-12345.67890, new CurrencyStub0()));
+        self::assertSame('!@:#$%?^&*()))))) ||', $locale->formatNumeric(-12345.67890, new CurrencyStub0()));
     }
 }
