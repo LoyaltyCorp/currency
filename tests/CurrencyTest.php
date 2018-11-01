@@ -5,7 +5,7 @@ namespace Tests\EoneoPay\Currencies;
 
 use EoneoPay\Currencies\Interfaces\CurrencyInterface;
 use PHPUnit\Framework\TestCase;
-use Tests\EoneoPay\Currencies\Stubs\CurrencyStub;
+use Tests\EoneoPay\Currencies\Stubs\CurrencyStub0;
 
 /**
  * @covers \EoneoPay\Currencies\Currency
@@ -19,7 +19,7 @@ class CurrencyTest extends TestCase
      */
     public function testCurrencyStandardFunctionality(): void
     {
-        $currency = new CurrencyStub();
+        $currency = new CurrencyStub0();
 
         self::assertInstanceOf(CurrencyInterface::class, $currency);
         self::assertSame('CURRENCYSTUB', $currency->getAlphaCode());

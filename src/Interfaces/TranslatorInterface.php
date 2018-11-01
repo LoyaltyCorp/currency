@@ -11,8 +11,6 @@ interface TranslatorInterface
      * @param string $identifier The locale identifier to find
      *
      * @return \EoneoPay\Currencies\Interfaces\LocaleInterface
-     *
-     * @throws \EoneoPay\Currencies\Exceptions\InvalidLocaleIdentifierException If locale is invalid
      */
     public function find(string $identifier): LocaleInterface;
 

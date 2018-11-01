@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace EoneoPay\Currencies;
 
+use Closure;
 use GlobIterator;
 
 abstract class Iterator
@@ -16,7 +17,7 @@ abstract class Iterator
      *
      * @return mixed|null The result of the closure or null
      */
-    protected function iterateDirectory(\Closure $closure, string $directory, string $interface)
+    protected function iterateDirectory(Closure $closure, string $directory, string $interface)
     {
         $classes = new GlobIterator(\sprintf('%s/*.php', \sprintf('%s/%s', __DIR__, $directory)));
 
@@ -27,15 +28,14 @@ abstract class Iterator
 
             // Instantiate class
             $className = \sprintf('%s\\%s\\%s', __NAMESPACE__, $directory, $basename);
-            $instantiated = new $className;
+            $instantiated = new $className();
 
             // Make sure class implements the correct interface
             if (($instantiated instanceof $interface) === false) {
-                // @codeCoverageIgnoreStart
                 // This is only here as a fail-safe if a php file which doesn't implement interface is added to
                 // the directory
-                continue;
-                // @codeCoverageIgnoreEnd
+
+                continue; // @codeCoverageIgnore
             }
 
             $return = $closure($instantiated);

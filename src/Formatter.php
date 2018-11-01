@@ -39,13 +39,7 @@ class Formatter implements FormatterInterface
     }
 
     /**
-     * Get currency formatted for display including symbol
-     *
-     * @param string $locale The locale to display the currency in
-     *
-     * @return string
-     *
-     * @throws \EoneoPay\Currencies\Exceptions\InvalidLocaleIdentifierException Inherited, if locale is invalid
+     * @inheritdoc
      */
     public function currency(string $locale): string
     {
@@ -53,9 +47,7 @@ class Formatter implements FormatterInterface
     }
 
     /**
-     * Get currency formatted as standard decimal value
-     *
-     * @return string
+     * @inheritdoc
      */
     public function decimal(): string
     {
@@ -63,13 +55,7 @@ class Formatter implements FormatterInterface
     }
 
     /**
-     * Get currency formatted with only numeric values
-     *
-     * @param string $locale The locale to display the currency in
-     *
-     * @return string
-     *
-     * @throws \EoneoPay\Currencies\Exceptions\InvalidLocaleIdentifierException Inherited, if locale is invalid
+     * @inheritdoc
      */
     public function numeric(string $locale): string
     {

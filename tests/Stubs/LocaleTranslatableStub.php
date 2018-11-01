@@ -3,17 +3,25 @@ declare(strict_types=1);
 
 namespace Tests\EoneoPay\Currencies\Stubs;
 
+use EoneoPay\Currencies\Interfaces\Locales\TranslatableInterface;
 use EoneoPay\Currencies\Locale;
 
-class LocaleTranslatableStub extends Locale
+class LocaleTranslatableStub extends Locale implements TranslatableInterface
 {
     /**
-     * Set translation mapping
+     * @inheritdoc
      */
-    public function __construct()
+    public function getIdentifier(): string
     {
-        // Override translation mapping to use symbols for numbers
-        $this->translations = [
+        return 'te_TR';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getTranslationMapping(): array
+    {
+        return [
             0 => ')',
             1 => '!',
             2 => '@',
@@ -28,24 +36,7 @@ class LocaleTranslatableStub extends Locale
     }
 
     /**
-     * Get the identifier for the current locale
-     *
-     * @return string
-     */
-    public function getIdentifier(): string
-    {
-        return 'te_TR';
-    }
-
-    /**
-     * Get format for currency
-     *
-     * This uses placeholders for formatting numbers:
-     *  - Hyphen/minus (-|\u{2D}) to denote where a negative symbol should go
-     *  - Currency sign (¤|\u{A4}) to denote where a currency symbol should go
-     *  - Number sign (#|\u{23}) to denote where the formatted number should go
-     *
-     * @return string
+     * @inheritdoc
      */
     protected function getCurrencyFormat(): string
     {
@@ -53,9 +44,7 @@ class LocaleTranslatableStub extends Locale
     }
 
     /**
-     * Get decimal separator
-     *
-     * @return string
+     * @inheritdoc
      */
     protected function getDecimalSeparator(): string
     {
@@ -63,9 +52,7 @@ class LocaleTranslatableStub extends Locale
     }
 
     /**
-     * Get negative value symbol
-     *
-     * @return string
+     * @inheritdoc
      */
     protected function getNegativeSymbol(): string
     {
@@ -73,13 +60,7 @@ class LocaleTranslatableStub extends Locale
     }
 
     /**
-     * Get numeric format
-     *
-     * This uses placeholders for formatting numbers:
-     *  - Hyphen/minus (-|\u{2D}) to denote where a negative symbol should go
-     *  - Number sign (#|\u{23}) to denote where the formatted number should go
-     *
-     * @return string
+     * @inheritdoc
      */
     protected function getNumericFormat(): string
     {
@@ -87,9 +68,7 @@ class LocaleTranslatableStub extends Locale
     }
 
     /**
-     * Get thousands separator
-     *
-     * @return string
+     * @inheritdoc
      */
     protected function getThousandsSeparator(): string
     {
