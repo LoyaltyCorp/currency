@@ -5,14 +5,14 @@ namespace EoneoPay\Currencies\Currencies;
 
 use EoneoPay\Currencies\Currency;
 
-class Jpy extends Currency
+class Lak extends Currency
 {
     /**
      * @inheritdoc
      */
     public function getCurrencySymbol(): string
     {
-        return "\u{a5}";
+        return "\u{20ad}";
     }
 
     /**
@@ -20,7 +20,7 @@ class Jpy extends Currency
      */
     public function getMinorUnit(): int
     {
-        return 0;
+        return 2;
     }
 
     /**
@@ -28,7 +28,7 @@ class Jpy extends Currency
      */
     public function getName(): string
     {
-        return 'Yen';
+        return 'Lao Kip';
     }
 
     /**
@@ -36,6 +36,6 @@ class Jpy extends Currency
      */
     public function getNumericCode(): string
     {
-        return '392';
+        return '418';
     }
 }

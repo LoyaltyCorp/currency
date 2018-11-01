@@ -5,14 +5,14 @@ namespace EoneoPay\Currencies\Currencies;
 
 use EoneoPay\Currencies\Currency;
 
-class Jpy extends Currency
+class Gnf extends Currency
 {
     /**
      * @inheritdoc
      */
     public function getCurrencySymbol(): string
     {
-        return "\u{a5}";
+        return "\u{46}\u{47}";
     }
 
     /**
@@ -28,7 +28,7 @@ class Jpy extends Currency
      */
     public function getName(): string
     {
-        return 'Yen';
+        return 'Guinean Franc';
     }
 
     /**
@@ -36,6 +36,6 @@ class Jpy extends Currency
      */
     public function getNumericCode(): string
     {
-        return '392';
+        return '324';
     }
 }
