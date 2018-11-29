@@ -24,13 +24,10 @@ class ISO4217Test extends TestCase
         $iso4217 = new ISO4217();
 
         // Ensure not case sensitive
-        /** @noinspection UnnecessaryAssertionInspection Return type denotes CurrencyInterface, not AUD explcitly */
         self::assertInstanceOf(Aud::class, $iso4217->find('AUD'));
-        /** @noinspection UnnecessaryAssertionInspection Return type denotes CurrencyInterface, not AUD explcitly */
         self::assertInstanceOf(Aud::class, $iso4217->find('aud'));
 
         // Search by numeric code
-        /** @noinspection UnnecessaryAssertionInspection Return type denotes CurrencyInterface, not AUD explcitly */
         self::assertInstanceOf(Aud::class, (new ISO4217())->find('036'));
     }
 

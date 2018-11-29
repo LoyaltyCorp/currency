@@ -22,20 +22,31 @@ class Formatter implements FormatterInterface
     private $currency;
 
     /**
+     * The rounding mode being used
+     *
+     * @var int|null
+     */
+    private $roundingMode;
+
+    /**
      * Create a new formatter instance
      *
      * @param string $amount The amount to format
      * @param string $currency The currency being used
+     * @param int|null $roundingMode The rounding mode to use
      *
      * @throws \EoneoPay\Currencies\Exceptions\InvalidCurrencyCodeException Inherited, if currency is invalid
      */
-    public function __construct(string $amount, string $currency)
+    public function __construct(string $amount, string $currency, ?int $roundingMode = null)
     {
         // Remove all non-numeric values from amount and convert to float
         $this->amount = (float)\preg_replace('/[^\d\-\.]+/', '', $amount);
 
         // Attempt to find the currency class
         $this->currency = (new ISO4217())->find($currency);
+
+        // Set rounding mode if applicable
+        $this->roundingMode = $roundingMode;
     }
 
     /**
@@ -51,7 +62,20 @@ class Formatter implements FormatterInterface
      */
     public function decimal(): string
     {
-        return \sprintf(\sprintf('%%0.%df', $this->currency->getMinorUnit()), (string)$this->amount);
+        return \sprintf(
+            \sprintf('%%0.%df', $this->currency->getMinorUnit()),
+            (string)\round($this->amount, $this->currency->getMinorUnit(), $this->getRoundingMode())
+        );
+    }
+
+    /**
+     * Get rounding mode
+     *
+     * @return int
+     */
+    private function getRoundingMode(): int
+    {
+        return $this->roundingMode ?? \PHP_ROUND_HALF_UP;
     }
 
     /**

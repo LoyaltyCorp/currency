@@ -24,13 +24,9 @@ class TranslatorTest extends TestCase
         $translator = new Translator();
 
         // Ensure not case sensitive and can be found as long as identifier is valid
-        /** @noinspection UnnecessaryAssertionInspection Return type denotes CurrencyInterface, not AUD explcitly */
         self::assertInstanceOf(EnAu::class, $translator->find('en_AU'));
-        /** @noinspection UnnecessaryAssertionInspection Return type denotes CurrencyInterface, not AUD explcitly */
         self::assertInstanceOf(EnAu::class, $translator->find('en_au'));
-        /** @noinspection UnnecessaryAssertionInspection Return type denotes CurrencyInterface, not AUD explcitly */
         self::assertInstanceOf(EnAu::class, $translator->find('en-au'));
-        /** @noinspection UnnecessaryAssertionInspection Return type denotes CurrencyInterface, not AUD explcitly */
         self::assertInstanceOf(EnAu::class, $translator->find('enau'));
     }
 
