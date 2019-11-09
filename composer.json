@@ -1,5 +1,5 @@
 {
-  "name": "eoneopay/currencies",
+  "name": "eonx-com/currencies",
   "description": "ISO 4217 compatible library for handling currencies",
   "keywords": [
     "eoneopay",
@@ -19,6 +19,9 @@
     "roave/security-advisories": "dev-master",
     "sebastian/phpcpd": "^4.0",
     "squizlabs/php_codesniffer": "3.*"
+  },
+  "replace": {
+    "eoneopay/currencies": "*"
   },
   "autoload": {
     "psr-4": {
