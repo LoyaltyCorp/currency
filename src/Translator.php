@@ -6,32 +6,41 @@ namespace EoneoPay\Currencies;
 use EoneoPay\Currencies\Exceptions\InvalidLocaleIdentifierException;
 use EoneoPay\Currencies\Interfaces\LocaleInterface;
 use EoneoPay\Currencies\Interfaces\TranslatorInterface;
+use EoneoPay\Currencies\Locales\ArOm;
+use EoneoPay\Currencies\Locales\EnAu;
+use EoneoPay\Currencies\Locales\FrFr;
+use EoneoPay\Currencies\Locales\JaJp;
+use EoneoPay\Currencies\Locales\NlNl;
+use EoneoPay\Currencies\Locales\ZhCn;
 
-class Translator extends Iterator implements TranslatorInterface
+class Translator implements TranslatorInterface
 {
+    /** @var string[] */
+    private static $locales = [
+        'ar-om' => ArOm::class,
+        'en-au' => EnAu::class,
+        'fr-fr' => FrFr::class,
+        'ja-jp' => JaJp::class,
+        'nl-nl' => NlNl::class,
+        'zh-cn' => ZhCn::class
+    ];
+
     /**
      * @inheritdoc
      */
     public function find(string $identifier): LocaleInterface
     {
         // Format identifier
-        $identifier = \sprintf(
+        $identifier = \mb_strtolower(\sprintf(
             '%s-%s',
             \substr(\preg_replace('/[^a-zA-Z]+/', '', $identifier), 0, 2),
             \substr(\preg_replace('/[^a-zA-Z]+/', '', $identifier), -2)
-        );
+        ));
 
-        $locale = $this->iterateDirectory(function (LocaleInterface $locale) use ($identifier): ?LocaleInterface {
-            // Check currency against code
-            if (\mb_strtolower($locale->getIdentifier()) === \mb_strtolower($identifier)) {
-                return $locale;
-            }
+        if (isset(static::$locales[$identifier])) {
+            $locale = static::$locales[$identifier];
 
-            return null;
-        }, 'Locales', LocaleInterface::class);
-
-        if ($locale !== null) {
-            return $locale;
+            return new $locale();
         }
 
         // Locale isn't found, throw exception
@@ -47,9 +56,9 @@ class Translator extends Iterator implements TranslatorInterface
     {
         $localeCodes = [];
 
-        $this->iterateDirectory(function (LocaleInterface $locale) use (&$localeCodes): void {
-            $localeCodes[] = $locale->getIdentifier();
-        }, 'Locales', LocaleInterface::class);
+        foreach (static::$locales as $locale) {
+            $localeCodes[] = (new $locale())->getIdentifier();
+        }
 
         return $localeCodes;
     }

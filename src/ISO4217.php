@@ -3,12 +3,29 @@ declare(strict_types=1);
 
 namespace EoneoPay\Currencies;
 
+use EoneoPay\Currencies\Currencies\Aud;
+use EoneoPay\Currencies\Currencies\Jpy;
+use EoneoPay\Currencies\Currencies\Xbt;
 use EoneoPay\Currencies\Exceptions\InvalidCurrencyCodeException;
 use EoneoPay\Currencies\Interfaces\CurrencyInterface;
 use EoneoPay\Currencies\Interfaces\ISO4217Interface;
 
-class ISO4217 extends Iterator implements ISO4217Interface
+class ISO4217 implements ISO4217Interface
 {
+    /** @var string[] */
+    private static $currenciesAlpha = [
+        'aud' => Aud::class,
+        'jpy' => Jpy::class,
+        'xbt' => Xbt::class
+    ];
+
+    /** @var string[] */
+    private static $currenciesNum = [
+        '036' => Aud::class,
+        '392' => Jpy::class,
+        '-' => Xbt::class
+    ];
+
     /**
      * @inheritdoc
      */
@@ -25,9 +42,9 @@ class ISO4217 extends Iterator implements ISO4217Interface
     {
         $alphaCodes = [];
 
-        $this->iterateDirectory(function (CurrencyInterface $currency) use (&$alphaCodes): void {
-            $alphaCodes[] = $currency->getAlphaCode();
-        }, 'Currencies', CurrencyInterface::class);
+        foreach (static::$currenciesAlpha as $currency) {
+            $alphaCodes[] = (new $currency)->getAlphaCode();
+        }
 
         return $alphaCodes;
     }
@@ -44,21 +61,18 @@ class ISO4217 extends Iterator implements ISO4217Interface
      */
     private function findCurrency(string $code, string $method): CurrencyInterface
     {
-        $currency = $this->iterateDirectory(
-            function (CurrencyInterface $currency) use ($code, $method): ?CurrencyInterface {
-                // Check currency against code
-                if (\mb_strtolower($currency->{$method}()) === \mb_strtolower($code)) {
-                    return $currency;
-                }
+        if ($method === 'getNumericCode' && isset(static::$currenciesNum[$code])) {
+            $currency = static::$currenciesNum[$code];
 
-                return null;
-            },
-            'Currencies',
-            CurrencyInterface::class
-        );
+            return new $currency();
+        }
 
-        if ($currency !== null) {
-            return $currency;
+        $code = \mb_strtolower($code);
+
+        if ($method === 'getAlphaCode' && isset(static::$currenciesAlpha[$code])) {
+            $currency = static::$currenciesAlpha[$code];
+
+            return new $currency();
         }
 
         // Currency isn't found, throw exception
