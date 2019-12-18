@@ -4,7 +4,9 @@ declare(strict_types=1);
 namespace Tests\EoneoPay\Currencies;
 
 use EoneoPay\Currencies\Formatter;
+use EoneoPay\Currencies\ISO4217;
 use PHPUnit\Framework\TestCase;
+use Tests\EoneoPay\Currencies\Stubs\ISO4217Stub;
 
 /**
  * These tests convert a currency for display to:
@@ -19,6 +21,18 @@ use PHPUnit\Framework\TestCase;
  */
 class FormatterTest extends TestCase
 {
+    /**
+     * Make sure the formatter ISO4217 is set to its default.
+     *
+     * @return void
+     */
+    public static function setUpBeforeClass(): void
+    {
+        parent::setUpBeforeClass();
+
+        Formatter::setISO4217(new ISO4217());
+    }
+
     /**
      * Test formatting a currency for display purposes with different locale when it has eight minor units
      *
@@ -186,5 +200,21 @@ class FormatterTest extends TestCase
         self::assertSame('12345.01234569', (new Formatter('12345.012345686', 'XBT'))->decimal());
 
         self::assertSame('-12345.07', (new Formatter('-12345.0686', 'AUD'))->decimal());
+    }
+
+    /**
+     * Test overriding ISO4217
+     *
+     * @return void
+     */
+    public function testOverrideISO4217(): void
+    {
+        Formatter::setISO4217(new ISO4217Stub());
+
+        self::assertSame('12345.06', (new Formatter('12345.062', 'USD'))->decimal());
+        self::assertSame('12345.07', (new Formatter('12345.0686', 'USD'))->decimal());
+        self::assertSame('12345.01', (new Formatter('12345.01', 'USD'))->decimal());
+
+        self::assertSame('-12345.07', (new Formatter('-12345.0686', 'USD'))->decimal());
     }
 }

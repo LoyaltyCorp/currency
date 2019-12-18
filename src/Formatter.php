@@ -4,9 +4,15 @@ declare(strict_types=1);
 namespace EoneoPay\Currencies;
 
 use EoneoPay\Currencies\Interfaces\FormatterInterface;
+use EoneoPay\Currencies\Interfaces\ISO4217Interface;
 
 class Formatter implements FormatterInterface
 {
+    /**
+     * @var \EoneoPay\Currencies\Interfaces\ISO4217Interface
+     */
+    private static $iso4217;
+
     /**
      * The amount to format
      *
@@ -43,10 +49,36 @@ class Formatter implements FormatterInterface
         $this->amount = (float)\preg_replace('/[^\d\-\.]+/', '', $amount);
 
         // Attempt to find the currency class
-        $this->currency = (new ISO4217())->find($currency);
+        $this->currency = $this::getISO4217()->find($currency);
 
         // Set rounding mode if applicable
         $this->roundingMode = $roundingMode;
+    }
+
+    /**
+     * Sets the ISO4217 instance used for currency lookup.
+     *
+     * @param \EoneoPay\Currencies\Interfaces\ISO4217Interface $iso4217
+     *
+     * @return void
+     */
+    public static function setISO4217(ISO4217Interface $iso4217): void
+    {
+        self::$iso4217 = $iso4217;
+    }
+
+    /**
+     * Returns the ISO4217 for use inside this formatter.
+     *
+     * @return \EoneoPay\Currencies\Interfaces\ISO4217Interface
+     */
+    private static function getISO4217(): ISO4217Interface
+    {
+        if (self::$iso4217 === null) {
+            self::$iso4217 = new ISO4217();
+        }
+
+        return self::$iso4217;
     }
 
     /**
