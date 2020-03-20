@@ -9,10 +9,10 @@
   "license": "BSD-3-Clause",
   "type": "library",
   "require": {
-    "php": "^7.1",
-    "eonx-com/easy-test": "^2.3"
+    "php": "^7.1"
   },
   "require-dev": {
+    "eonx-com/easy-test": "^2.3",
     "eonx-com/standards": "^0.2",
     "phpmd/phpmd": "^2.6",
     "phpstan/phpstan": "^0.9",
