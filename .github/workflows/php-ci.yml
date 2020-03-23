@@ -14,7 +14,7 @@ jobs:
           - { name: Copy paste detector, run: composer copy-paste-detector }
           - { name: Mess detector, run: composer mess-detector }
           - { name: PHPStan, run: composer phpstan }
-          - { name: PHPUnit, run: composer coverage, coverage: pcov, artifact: coverage-html.tgz }
+          - { name: PHPUnit, run: composer coverage, artifact: coverage-html.tgz }
 
     name: ${{ matrix.actions.name}} (${{ matrix.php }})
 
@@ -24,7 +24,7 @@ jobs:
       -   uses: eonx-com/actions-setup-php@v1
           with:
             php-version: ${{ matrix.php }}
-            coverage: ${{ matrix.actions.coverage }}
+            coverage: pcov
 
       -   id: composer-cache
           run: echo "::set-output name=dir::$(composer config cache-files-dir)"
