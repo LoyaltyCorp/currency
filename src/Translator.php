@@ -17,8 +17,8 @@ class Translator extends Iterator implements TranslatorInterface
         // Format identifier
         $identifier = \sprintf(
             '%s-%s',
-            \substr(\preg_replace('/[^a-zA-Z]+/', '', $identifier), 0, 2),
-            \substr(\preg_replace('/[^a-zA-Z]+/', '', $identifier), -2)
+            \substr(\preg_replace('/[^a-zA-Z]+/', '', $identifier) ?: '', 0, 2),
+            \substr(\preg_replace('/[^a-zA-Z]+/', '', $identifier) ?: '', -2)
         );
 
         $locale = $this->iterateDirectory(function (LocaleInterface $locale) use ($identifier): ?LocaleInterface {

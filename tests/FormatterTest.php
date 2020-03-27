@@ -24,6 +24,8 @@ class FormatterTest extends TestCase
     /**
      * Make sure the formatter ISO4217 is set to its default.
      *
+     * @SuppressWarnings(PHPMD.StaticAccess)
+     *
      * @return void
      */
     public static function setUpBeforeClass(): void
@@ -204,6 +206,8 @@ class FormatterTest extends TestCase
 
     /**
      * Test overriding ISO4217
+     *
+     * @SuppressWarnings(PHPMD.StaticAccess)
      *
      * @return void
      */
